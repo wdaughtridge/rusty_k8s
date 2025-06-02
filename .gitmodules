@@ -1,0 +1,6 @@
+[submodule "k8s-config/proto/k8s.io/api"]
+	path = k8s-config/proto/k8s.io/api
+	url = https://github.com/kubernetes/api.git
+[submodule "k8s-config/proto/k8s.io/apimachinery"]
+	path = k8s-config/proto/k8s.io/apimachinery
+	url = https://github.com/kubernetes/apimachinery.git

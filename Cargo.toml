@@ -1,0 +1,13 @@
+[workspace]
+members = ["k8s-macro", "k8s-config"]
+resolver = "3"
+
+[workspace.dependencies]
+prost = "0.13.5"
+prost-types = "0.13.5"
+quote = "1.0.40"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+syn = "2.0.101"
+tonic = "0.13.1"
+tonic-build = { version = "0.13.1", features = ["prost"] }
