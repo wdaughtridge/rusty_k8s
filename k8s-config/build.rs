@@ -7,7 +7,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .include_file("k8s.rs")
         .message_attribute(
             ".",
-            "#[derive(k8s_macro::K8sResource)] #[derive(serde::Serialize, serde::Deserialize)]",
+            "#[derive(k8s_macro::K8sResource)] #[derive(serde::Serialize, serde::Deserialize)] #[serde(rename_all = \"camelCase\")]",
         )
         .compile_protos(
             &[
