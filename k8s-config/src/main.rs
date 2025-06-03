@@ -1,17 +1,15 @@
+use k8s::k8s::io::{api::core::v1::Pod, apimachinery::pkg::apis::meta::v1::ObjectMeta};
+
 mod k8s {
     tonic::include_proto!("k8s");
 }
 
-use crate::k8s::k8s::io::api::core::v1 as core_v1;
-use crate::k8s::k8s::io::apimachinery::pkg::apis::meta::v1 as meta_v1;
-
 fn main() {
-    let mut my_pod = core_v1::Pod {
-        ..Default::default()
-    };
+    let mut my_pod = Pod::new();
 
-    my_pod.set_metadata(Some(meta_v1::ObjectMeta {
-        name: Some("test-pod".to_string()),
-        ..Default::default()
-    }));
+    let mut meta = ObjectMeta::new();
+    meta.set_name("my-pod".to_string());
+    meta.set_namespace("devops".to_string());
+
+    my_pod.set_metadata(meta);
 }

@@ -2,14 +2,78 @@ use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
     tonic_build::configure()
-        .build_server(false)
+        .build_server(true)
         .build_client(true)
         .include_file("k8s.rs")
         .message_attribute(
             ".",
             "#[derive(k8s_macro::K8sResource)] #[derive(serde::Serialize, serde::Deserialize)]",
         )
-        .compile_protos(&["proto/k8s.io/api/apps/v1/generated.proto"], &["proto"])?;
+        .compile_protos(
+            &[
+                "proto/k8s.io/api/apps/v1/generated.proto",
+                "proto/k8s.io/api/rbac/v1/generated.proto",
+                "proto/k8s.io/api/rbac/v1beta1/generated.proto",
+                "proto/k8s.io/api/rbac/v1alpha1/generated.proto",
+                "proto/k8s.io/api/apiserverinternal/v1alpha1/generated.proto",
+                "proto/k8s.io/api/flowcontrol/v1beta3/generated.proto",
+                "proto/k8s.io/api/flowcontrol/v1/generated.proto",
+                "proto/k8s.io/api/flowcontrol/v1beta2/generated.proto",
+                "proto/k8s.io/api/flowcontrol/v1beta1/generated.proto",
+                "proto/k8s.io/api/core/v1/generated.proto",
+                "proto/k8s.io/api/coordination/v1/generated.proto",
+                "proto/k8s.io/api/coordination/v1alpha2/generated.proto",
+                "proto/k8s.io/api/coordination/v1beta1/generated.proto",
+                "proto/k8s.io/api/scheduling/v1/generated.proto",
+                "proto/k8s.io/api/scheduling/v1beta1/generated.proto",
+                "proto/k8s.io/api/scheduling/v1alpha1/generated.proto",
+                "proto/k8s.io/api/apidiscovery/v2beta1/generated.proto",
+                "proto/k8s.io/api/apidiscovery/v2/generated.proto",
+                "proto/k8s.io/api/networking/v1/generated.proto",
+                "proto/k8s.io/api/networking/v1beta1/generated.proto",
+                "proto/k8s.io/api/admission/v1/generated.proto",
+                "proto/k8s.io/api/admission/v1beta1/generated.proto",
+                "proto/k8s.io/api/discovery/v1/generated.proto",
+                "proto/k8s.io/api/discovery/v1beta1/generated.proto",
+                "proto/k8s.io/api/certificates/v1/generated.proto",
+                "proto/k8s.io/api/certificates/v1beta1/generated.proto",
+                "proto/k8s.io/api/certificates/v1alpha1/generated.proto",
+                "proto/k8s.io/api/storage/v1/generated.proto",
+                "proto/k8s.io/api/storage/v1beta1/generated.proto",
+                "proto/k8s.io/api/storage/v1alpha1/generated.proto",
+                "proto/k8s.io/api/extensions/v1beta1/generated.proto",
+                "proto/k8s.io/api/batch/v1/generated.proto",
+                "proto/k8s.io/api/batch/v1beta1/generated.proto",
+                "proto/k8s.io/api/admissionregistration/v1/generated.proto",
+                "proto/k8s.io/api/admissionregistration/v1beta1/generated.proto",
+                "proto/k8s.io/api/admissionregistration/v1alpha1/generated.proto",
+                "proto/k8s.io/api/node/v1/generated.proto",
+                "proto/k8s.io/api/node/v1beta1/generated.proto",
+                "proto/k8s.io/api/node/v1alpha1/generated.proto",
+                "proto/k8s.io/api/events/v1/generated.proto",
+                "proto/k8s.io/api/events/v1beta1/generated.proto",
+                "proto/k8s.io/api/autoscaling/v1/generated.proto",
+                "proto/k8s.io/api/autoscaling/v2beta1/generated.proto",
+                "proto/k8s.io/api/autoscaling/v2/generated.proto",
+                "proto/k8s.io/api/autoscaling/v2beta2/generated.proto",
+                "proto/k8s.io/api/resource/v1beta2/generated.proto",
+                "proto/k8s.io/api/resource/v1alpha3/generated.proto",
+                "proto/k8s.io/api/resource/v1beta1/generated.proto",
+                "proto/k8s.io/api/authorization/v1/generated.proto",
+                "proto/k8s.io/api/authorization/v1beta1/generated.proto",
+                "proto/k8s.io/api/storagemigration/v1alpha1/generated.proto",
+                "proto/k8s.io/api/apps/v1/generated.proto",
+                "proto/k8s.io/api/apps/v1beta2/generated.proto",
+                "proto/k8s.io/api/apps/v1beta1/generated.proto",
+                "proto/k8s.io/api/authentication/v1/generated.proto",
+                "proto/k8s.io/api/authentication/v1beta1/generated.proto",
+                "proto/k8s.io/api/authentication/v1alpha1/generated.proto",
+                "proto/k8s.io/api/imagepolicy/v1alpha1/generated.proto",
+                "proto/k8s.io/api/policy/v1/generated.proto",
+                "proto/k8s.io/api/policy/v1beta1/generated.proto",
+            ],
+            &["proto"],
+        )?;
 
     Ok(())
 }
